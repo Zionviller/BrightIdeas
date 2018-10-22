@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Login / Register";
+}
+@model LoginRegViewModel
+
+<div class="content">
+    <h1>Bright Ideas</h1>
+    <div>
+        <h3>Login</h3>
+        <form asp-controller="Home" asp-action="Login" method="post">
+            <div>
+                <label asp-for="Login.Email"></label>
+                <input asp-for="Login.Email" />
+                <span asp-validation-for="Login.Email"></span>
+            </div>
+
+            <div>
+                <label asp-for="Login.Password"></label>
+                <input asp-for="Login.Password" />
+                <span asp-validation-for="Login.Password"></span>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <div>
+        <h3>Register</h3>
+        <form asp-controller="Home" asp-action="CreateUser" method="post">
+            <div>
+                <label asp-for="User.Name"></label>
+                <input asp-for="User.Name" />
+                <span asp-validation-for="User.Name"></span>
+            </div>
+
+            <div>
+                <label asp-for="User.Alias"></label>
+                <input asp-for="User.Alias" />
+                <span asp-validation-for="User.Alias"></span>
+            </div>
+
+            <div>
+                <label asp-for="User.Email"></label>
+                <input asp-for="User.Email" />
+                <span asp-validation-for="User.Email"></span>
+            </div>
+
+            <div>
+                <label asp-for="User.Password"></label>
+                <input asp-for="User.Password" />
+                <span asp-validation-for="User.Password"></span>
+            </div>
+
+            <div>
+                <label asp-for="User.Confirm"></label>
+                <input asp-for="User.Confirm" />
+                <span asp-validation-for="User.Confirm"></span>
+            </div>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</div>
