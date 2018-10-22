@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+
+    string personPeople(int count)
+    {
+        if (count == 0)
+        {
+            return "no one";
+        }
+        else if (count == 1)
+        {
+            return "one person";
+        }
+        else if (count > 1)
+        {
+            return $"{count} people";
+        }
+        else
+        {
+            return "I AM ERROR";
+        }
+    }
+
+    string timeTimes(int count)
+    {
+        return count == 1 ? "time" : "times";
+    }
+}
+@model BrightIdeasViewModel
+
+<h1>Bright Ideas</h1>
+<a asp-controller="Home" asp-action="Logout">Logout</a>
+<form asp-action="CreateIdea" asp-controller="Home" method="post">
+    <label asp-for="IdeaSub">Your Idea:</label>
+    <input asp-for="IdeaSub" />
+    <span asp-validation-for="IdeaSub"></span>
+    <input type="hidden" asp-for="UserId" value="@Model.UserId" />
+    <button type="submit">Add Idea</button>
+</form>
+<div class="allIdeas">
+    @foreach (Idea idea in Model.AllIdeas)
+    {
+        <div class="idea">
+            <a href="/BrightMind/@idea.Creator.UserId"><p>@idea.Creator.Alias</p></a>
+            <p class="text">@idea.Text</p>
+            <a asp-controller="Home" asp-action="Like" asp-route-id="@idea.IdeaId"><i class="fas fa-heart"></i></a>
+            <a asp-controller="Home" asp-action="Idea" asp-route-id="@idea.IdeaId">@personPeople(idea.LikedBy.Count)</a> liked this @idea.TotalLikes @timeTimes(idea.TotalLikes).
+            @if (idea.UserId == Model.UserId)
+            {
+                <a asp-controller="Home" asp-action="DeleteIdea" asp-route-id="@idea.IdeaId"><i class="fas fa-trash"></i></a>
+            }
+
+        </div>
+    }
+</div>

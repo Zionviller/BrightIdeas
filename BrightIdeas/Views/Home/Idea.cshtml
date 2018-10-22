@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model Idea
+
+<h1>Bright Idea</h1>
+<a href="#" onclick="history.go(-1)">Back</a>
+<a asp-controller="Home" asp-action="LogOut">Log Out</a>
+
+<div class="idea">
+    <p>@Model.Creator.Alias</p>
+    <p class="text">@Model.Text</p>
+</div>
+
+<p>People Who Liked this Post</p>
+<table>
+    <thead>
+        <tr>
+            <th>Alias</th>
+            <th>Name</th>
+            <th>Power Level</th>
+        </tr>
+    </thead>
+    @foreach (Like like in Model.LikedBy)
+    {
+        <tr>
+            <td>@like.Liker.Alias</td>
+            <td>@like.Liker.Name</td>
+            <td class="num">@like.Count</td>
+        </tr>
+    }
+</table>

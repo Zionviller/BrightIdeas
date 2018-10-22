@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model User
+
+<h1>Bright Mind</h1>
+<a href="#" onclick="history.go(-1)">Back</a>
+<a asp-controller="Home" asp-action="LogOut">Log Out</a>
+<h2>@Model.Alias</h2>
+<h3>@Model.Name</h3>
+<h3>@Model.Email</h3>
+<p>Number of Posts: @Model.Ideas.Count</p>
+<p>Number of Likes: @Model.Likes.Sum(l => l.Count)</p>
